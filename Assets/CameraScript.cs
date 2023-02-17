@@ -20,6 +20,6 @@ public class CameraScript : MonoBehaviour
         gameHeight = frustumHeight;
         gameWidth = gameHeight * Camera.main.aspect;
 
-        Debug.Log("Wysokoœæ pola gry: " + gameHeight + ", szerokoœæ: " + gameWidth);
+        //Debug.Log("Wysokoœæ pola gry: " + gameHeight + ", szerokoœæ: " + gameWidth);
     }
 }
