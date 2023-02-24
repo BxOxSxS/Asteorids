@@ -12,10 +12,13 @@ public class LevelManager : MonoBehaviour
 
     public GameObject asteroidPrefab;
 
+    public GameObject gameOverScreen;
+
     // Start is called before the first frame update
     void Start()
     {
         cs = Camera.main.GetComponent<CameraScript>();
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
@@ -64,5 +67,11 @@ public class LevelManager : MonoBehaviour
                 break;
         }
         return randomSpawnLocation;
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+       gameOverScreen.SetActive(true);
     }
 }
