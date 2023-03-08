@@ -30,10 +30,11 @@ public class AsteroidsScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Destroy(gameObject);
         GameObject other = collision.gameObject;
         if (other.CompareTag("Player"))
         {
-            GameObject.Find("LevelManager").GetComponent<LevelManager>().GameOver();
+            other.GetComponent<PlayerControler>().Hited();
         }
     }
 }

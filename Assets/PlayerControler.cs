@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerControler : MonoBehaviour
 {
     Rigidbody rb;
@@ -17,6 +19,17 @@ public class PlayerControler : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform gunLeft, gunRight;
     public float bulletSpeed = 5;
+    
+    public AudioClip gunSound;
+    public AudioClip ugh;
+    AudioSource audioSource;
+    
+    public int hp = 3;
+    public TextMeshProUGUI hpUI;
+    
+    public int score = 0;
+    public TextMeshProUGUI scoreUI; 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +39,7 @@ public class PlayerControler : MonoBehaviour
 
         gunLeft = transform.Find("GunLeft").transform;
         gunRight = transform.Find("GunRight").transform;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -61,6 +75,8 @@ public class PlayerControler : MonoBehaviour
 
     void Fire()
     {
+        audioSource.PlayOneShot(gunSound, 0.5F);
+
         GameObject leftBullet = Instantiate(bulletPrefab, gunLeft.position, Quaternion.identity);
 
         leftBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
@@ -72,5 +88,22 @@ public class PlayerControler : MonoBehaviour
         rightBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
 
         Destroy(rightBullet, 5);
+    }
+
+    public void Hited()
+    {
+        hp -= 1;
+        audioSource.PlayOneShot(ugh, 1F);
+        hpUI.text = hp.ToString();
+        if (hp == 0)
+        {
+            GameObject.Find("LevelManager").GetComponent<LevelManager>().GameOver();
+        }
+    }
+
+    public void Hit()
+    {
+        score += 1;
+        scoreUI.text = score.ToString();
     }
 }

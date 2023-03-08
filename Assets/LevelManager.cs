@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class LevelManager : MonoBehaviour
     public GameObject asteroidPrefab;
 
     public GameObject gameOverScreen;
+    
+    public TextMeshProUGUI scoreUiEnd;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +75,9 @@ public class LevelManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
-       gameOverScreen.SetActive(true);
+        int score = GameObject.FindWithTag("Player").GetComponent<PlayerControler>().score;
+        scoreUiEnd.text = "Wynik: " + score.ToString();
+
+        gameOverScreen.SetActive(true);
     }
 }
