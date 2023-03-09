@@ -10,16 +10,7 @@ public class AsteroidsScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        rb = GetComponent<Rigidbody>();
-
-        Vector3 movmentVector = player.transform.position - transform.position;
-        movmentVector = movmentVector.normalized * 10;
-
-        rb.GetComponent<Rigidbody>().AddForce(movmentVector, ForceMode.VelocityChange);
-        rb.AddTorque(new Vector3(Random.Range(0, 90), Random.Range(0, 90), Random.Range(0, 90)));
-
-        Destroy(gameObject, 5);
+        StartCoroutine(Wait(5));
     }
 
     // Update is called once per frame
@@ -36,5 +27,22 @@ public class AsteroidsScript : MonoBehaviour
         {
             other.GetComponent<PlayerControler>().Hited();
         }
+    }
+
+    IEnumerator Wait(int s)
+    {
+        yield return new WaitForSecondsRealtime(s);
+
+        player = GameObject.FindWithTag("Player");
+        rb = GetComponent<Rigidbody>();
+
+        Vector3 movmentVector = player.transform.position - transform.position;
+        movmentVector = movmentVector.normalized * 10;
+
+
+        rb.GetComponent<Rigidbody>().AddForce(movmentVector, ForceMode.VelocityChange);
+        rb.AddTorque(new Vector3(Random.Range(0, 90), Random.Range(0, 90), Random.Range(0, 90)));
+
+        Destroy(gameObject, 5);
     }
 }

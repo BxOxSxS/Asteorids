@@ -18,10 +18,11 @@ public class PlayerControler : MonoBehaviour
 
     public GameObject bulletPrefab;
     public Transform gunLeft, gunRight;
-    public float bulletSpeed = 5;
+    public float bulletSpeed = 15F;
     
     public AudioClip gunSound;
     public AudioClip ugh;
+    public AudioClip destorySound;
     AudioSource audioSource;
     
     public int hp = 3;
@@ -77,13 +78,13 @@ public class PlayerControler : MonoBehaviour
     {
         audioSource.PlayOneShot(gunSound, 0.5F);
 
-        GameObject leftBullet = Instantiate(bulletPrefab, gunLeft.position, Quaternion.identity);
+        GameObject leftBullet = Instantiate(bulletPrefab, gunLeft.position, transform.localRotation);
 
         leftBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
         
         Destroy(leftBullet, 5);
 
-        GameObject rightBullet = Instantiate(bulletPrefab, gunRight.position, Quaternion.identity);
+        GameObject rightBullet = Instantiate(bulletPrefab, gunRight.position, transform.localRotation);
 
         rightBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
 
@@ -104,6 +105,7 @@ public class PlayerControler : MonoBehaviour
     public void Hit()
     {
         score += 1;
+        audioSource.PlayOneShot(destorySound, 2F);
         scoreUI.text = score.ToString();
     }
 }
