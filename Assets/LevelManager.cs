@@ -16,6 +16,10 @@ public class LevelManager : MonoBehaviour
     public GameObject gameOverScreen;
     
     public TextMeshProUGUI scoreUiEnd;
+    public TextMeshProUGUI timeUi;
+    public TextMeshProUGUI timeUiEnd;
+
+    float time = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -37,12 +41,17 @@ public class LevelManager : MonoBehaviour
 
             spawnTimer = 0;
         }
+
+        time += Time.deltaTime;
+        string minute = Mathf.FloorToInt(time / 60f).ToString();
+        string second = Mathf.RoundToInt(time % 60f).ToString();
+        timeUi.text = minute + ":" + second;
     }
 
     Vector3 getRandomSpawnPosition()
     {
-        verticalDistance = 0.55f * cs.gameHeight;
-        horizontalDistance = 0.55f * cs.gameWidth;
+        verticalDistance = 1f * cs.gameHeight;
+        horizontalDistance = 1f * cs.gameWidth;
 
         int randomSpawnLine = Random.Range(1, 5);
         Vector3 randomSpawnLocation = Vector3.zero;
@@ -77,6 +86,9 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0;
         int score = GameObject.FindWithTag("Player").GetComponent<PlayerControler>().score;
         scoreUiEnd.text = "Wynik: " + score.ToString();
+        string minute = Mathf.FloorToInt(time / 60f).ToString();
+        string second = Mathf.RoundToInt(time % 60f).ToString();
+        timeUiEnd.text = "Czas: " + minute + ":" + second;
 
         gameOverScreen.SetActive(true);
     }

@@ -82,13 +82,16 @@ public class PlayerControler : MonoBehaviour
 
         leftBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
         
-        Destroy(leftBullet, 5);
+        Destroy(leftBullet, 3);
 
         GameObject rightBullet = Instantiate(bulletPrefab, gunRight.position, transform.localRotation);
 
         rightBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
 
-        Destroy(rightBullet, 5);
+        Destroy(rightBullet, 3);
+
+        score -= 1;
+        scoreUI.text = score.ToString();
     }
 
     public void Hited()
@@ -104,7 +107,7 @@ public class PlayerControler : MonoBehaviour
 
     public void Hit()
     {
-        score += 1;
+        score += 10;
         audioSource.PlayOneShot(destorySound, 2F);
         scoreUI.text = score.ToString();
     }

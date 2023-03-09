@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 2203782666810166514}
   - component: {fileID: 921352461648903870}
   - component: {fileID: 8315711304959211637}
+  - component: {fileID: -2494696291567835170}
   m_Layer: 0
   m_Name: Kamulec
   m_TagString: Enemy
@@ -244,6 +245,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28195bae168998f4bae95922f041aa19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2494696291567835170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3527107050679479522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 1, g: 0, b: 0, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 1
+  indicator: {fileID: 0}
 --- !u!1 &4479612329233280861
 GameObject:
   m_ObjectHideFlags: 0
