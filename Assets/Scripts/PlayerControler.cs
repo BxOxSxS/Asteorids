@@ -97,7 +97,7 @@ public class PlayerControler : MonoBehaviour
     public void Hited()
     {
         hp -= 1;
-        audioSource.PlayOneShot(ugh, 1F);
+        audioSource.PlayOneShot(ugh, 2F);
         hpUI.text = hp.ToString();
         if (hp == 0)
         {
@@ -108,7 +108,7 @@ public class PlayerControler : MonoBehaviour
     public void Hit()
     {
         score += 10;
-        audioSource.PlayOneShot(destorySound, 2F);
+        audioSource.PlayOneShot(destorySound, 4F);
         scoreUI.text = score.ToString();
     }
 }

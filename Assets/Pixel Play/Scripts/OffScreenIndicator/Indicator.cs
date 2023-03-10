@@ -53,7 +53,6 @@ public class Indicator : MonoBehaviour
     /// <param name="value"></param>
     public void SetDistanceText(float value)
     {
-        distanceText.color = new Color(255, 255, 255, 255);
         distanceText.text = value >= 0 ? Mathf.Floor(value) + " m" : "";
     }
 

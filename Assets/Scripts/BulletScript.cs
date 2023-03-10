@@ -23,7 +23,8 @@ public class BulletScript : MonoBehaviour
     {
         GameObject target = collision.gameObject;
         if (target.CompareTag("Enemy")) {
-            Destroy(target);
+            //Destroy(target);
+            target.GetComponent<AsteroidsScript>().Explode();
             player.GetComponent<PlayerControler>().Hit();
         }
         Destroy(gameObject);

@@ -7,6 +7,8 @@ public class AsteroidsScript : MonoBehaviour
     GameObject player;
     Rigidbody rb;
 
+    public GameObject explosionPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,5 +39,11 @@ public class AsteroidsScript : MonoBehaviour
         {
             other.GetComponent<PlayerControler>().Hited();
         }
+    }
+
+    public void Explode()
+    {
+        GameObject e = GameObject.Instantiate(explosionPrefab, transform.position, transform.rotation);
+        Destroy(e, 2.5F);
     }
 }
